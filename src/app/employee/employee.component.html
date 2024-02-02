@@ -1,0 +1,372 @@
+  ]
+  <h2 class="text-primary text-center">Application List List</h2>
+  <div class="row m-2 p-2">
+      <button class="btn btn-info" data-toggle="modal" data-target="#newModal">
+          <i class="fa fa-plus"></i> &nbsp; &nbsp; Add New Employee 
+
+      </button>
+      
+
+  </div>
+
+
+  <div class="containter rounded border m-2 p-2">
+      <table class="table table-border table-danger">
+          <thead>
+              <tr>
+                <th>company</th>
+                <th>Job Profile</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>salary</th>
+                  <th>Designation</th>
+                  <!-- <th>Department</th> -->
+                  <th>Resume</th>
+                  <th>City</th>
+                  <!-- <th>State</th>
+                  <th>Country</th> -->
+                  <th>applicationStatus</th>
+                  <!-- <td>State</td>
+                  <td>Country</td> -->
+                  <th>Application Action
+                  </th>
+                  <th>Action</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <tr *ngFor="let employee of employeesList|paginate:{itemsPerPage:itePerPage,currentPage:page,totalItems:employeesList.length}">
+               <td>{{ getCompanyName(employee.companyId) }}</td>
+               <td>{{ getJobProfile(employee.companyId) }}</td>
+                
+                <td *ngIf="employee.image">
+                      <img *ngIf="employee.image" [src]="base64ToImg(employee.image)" alt="Employee Image" />
+                  </td>
+                
+              <td>{{employee.name}}</td>
+              <td>{{employee.address}}</td>
+              <td>{{employee.salary}}</td>
+              <td>{{employee.designation}}</td>
+              <!-- <td>{{employee.department}}</td> -->
+              
+    <td *ngIf="employee.resume">
+      <iframe *ngIf="employee.resume" [src]="base64ToPdf(employee.resume)" width="60%" height="200px"></iframe>
+      <p *ngIf="employee.resume"><a [href]="base64ToPdf(employee.resume)" download="resume.pdf">Download the PDF file</a></p>
+
+  </td>
+             
+              <td>{{ employee.city ? employee.city.name : 'N/A' }}</td>
+              <!-- <td>{{ employee.city.state ? employee.city.state.name : 'N/A' }}</td>
+              <td>{{ employee.city.state.country ? employee.city.state.country.name : 'N/A' }}</td> -->
+              <td>{{employee.applicationStatus}}</td>
+              <td><button class="btn btn-info m-2"(click)="approveApplication(employee)">
+                <i class="fa fa-check" aria-hidden="true"></i>
+               
+             </button>
+                <button class="btn btn-danger m-2" (click)="rejectApplication(employee)">
+                  <i class="fa fa-ban"></i></button>
+             </td>
+            
+            
+            
+
+              <td><button (click)="editClick(employee)" data-toggle="modal" data-target="#editModal" class="btn btn-info m-2">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button  (click)="deleteClick(employee.id) " class="btn btn-danger m-2">
+                  <i class="fa fa-trash"></i></button></td>
+
+
+              </tr>
+
+              </tbody>
+                  </table>
+                  <pagination-controls [(ngModel)]="page" (pageChange)="onPageChange($event)" class="paginate"></pagination-controls>
+                  </div>
+                
+                  
+                
+                <div class="modal" id="newModal" tabindex="-1" role="dialog">
+                  
+                    <div class="modal-dialog" role="document">
+                <div class="modal-content">
+              <div class="modal-header bg-info">
+                <h5 class="modal-title text-white">Create Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <!-- Header -->
+              <div class="modal-body">
+                <div class="form-group row">
+                  <label for="txtname" class="col-sm-4">Name</label>
+                
+                <div class="col-sm-8">
+              <input [(ngModel)]="newEmployee.name" type="text"  id="txtname" class="form-control" placeholder="Enter Name" name="name"/>
+                </div>
+              </div>
+      
+              <div class="form-group row">
+                  <label for="txtaddress" class="col-sm-4">Address</label>
+                
+                <div class="col-sm-8">
+              <input [(ngModel)]="newEmployee.address"  type="text" id="txtaddress" class="form-control" placeholder="Enter Address" name="address"/>
+                </div>
+              </div>
+      
+              <div class="form-group row">
+                  <label for="txtsalary" class="col-sm-4">Salary</label>
+                
+                <div class="col-sm-8">
+              <input [(ngModel)]="newEmployee.salary" type="number" id="txtsalary" class="form-control" placeholder="Enter Salary" name="salary"/>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="txtphonenumber" class="col-sm-4">Phone Number</label>
+              
+              <div class="col-sm-8">
+            <input [(ngModel)]="newEmployee.phoneNumber" type="number" id="txtphonenumber" class="form-control" placeholder="Enter Phone Number" name="phoneNumber"/>
+              </div>
+            </div>
+
+
+              <div class="form-group row">
+                <label for="txtdesignation" class="col-sm-4">Designation</label>
+              
+              <div class="col-sm-8">
+            <input [(ngModel)]="newEmployee.designation" type="text" id="txtdesignation" class="form-control" placeholder="Enter designation" name="designation"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="txtdepartment" class="col-sm-4">Department</label>
+            
+            <div class="col-sm-8">
+            <input [(ngModel)]="newEmployee.department"  type="text" id="txtdepartment" class="form-control" placeholder="Enter Department" name="department"/>
+            </div>
+          </div>
+            <div class="form-group row">
+              <label for="txtpincode" class="col-sm-4">PinCode</label>
+            
+            <div class="col-sm-8">
+            <input [(ngModel)]="newEmployee.pinCode"  type="number" id="txtpincode" class="form-control" placeholder="Enter PinCode" name="pincode"/>
+            </div>
+          </div>
+          <div class="form-group row">
+              <label for="txtemail" class="col-sm-4">Email</label>
+            
+            <div class="col-sm-8">
+
+
+          <input [(ngModel)]="newEmployee.email"  type="text" id="txtemail" class="form-control" placeholder="Enter Email" name="email"/>
+            </div>
+            </div>
+            
+          
+            <div class="form-group row">
+              <label for="txtImage" class="col-sm-4">Image</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.image" (change)="onNewEmployeeImageChange($event)" type="file" id="txtImage" class="form-control" placeholder="Enter Image URL" name="image" />
+                <img *ngIf="imagePreview" [src]="imagePreview" alt="Employee Image" />
+              </div>
+            </div>
+              
+
+                <div class="form-group row">
+                  <label for="selectCountry" class="col-sm-4">Country</label>
+                  <div class="col-sm-8">
+                    <select  id="selectCountry" class="form-control" (change)="onCountryChange($event)">
+                      <option value="" disabled selected>Select Country</option>
+                      <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                  <label for="selectState" class="col-sm-4">State</label>
+                  <div class="col-sm-8">
+                    <select  id="selectState" class="form-control" (change)="onStateChange($event)">
+                      <option value="" disabled selected>Select State</option>
+                      <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                  <label for="selectCity" class="col-sm-4">City</label>
+                  <div class="col-sm-8">
+                    <select id="selectCity" (change)="onCitySelected($event)"  class="form-control" [(ngModel)]="newEmployee.cityId" name="selectedCity">
+                      <option value="" disabled selected>Select City</option>
+                      <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                    </select>
+                  </div>
+                </div>
+                
+
+  
+        
+                  
+      
+            
+            
+              
+              <div class="modal-footer">
+                <button (click)="saveClick()" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+              </div>
+                </div>
+                </div>
+              
+
+
+
+
+
+
+                  <!-- edit model -->
+                <div class="modal" id="editModal" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+              <div class="modal-header bg-info">
+                <h5 class="modal-title text-white">Update Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <!-- Header -->
+              <div class="modal-body">
+                <div class="form-group row">
+                  <label for="txtname" class="col-sm-4">Name</label>
+                
+                <div class="col-sm-8">
+              <input [(ngModel)]="editEmployee.name" type="text"  id="txtname" class="form-control"  name="name"/>
+                </div>
+              </div>
+      
+              <div class="form-group row">
+                  <label for="txtaddress" class="col-sm-4">Address</label>
+                
+                <div class="col-sm-8">
+              <input [(ngModel)]="editEmployee.address"  type="text" id="txtaddress" class="form-control"  name="address"/>
+                </div>
+              </div>
+      
+              <div class="form-group row">
+                  <label for="txtsalary" class="col-sm-4">Salary</label>
+                
+                <div class="col-sm-8">
+              <input [(ngModel)]="editEmployee.salary" type="number" id="txtsalary" class="form-control"  name="salary"/>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="txtdesignation" class="col-sm-4">Designation</label>
+              
+              <div class="col-sm-8">
+            <input [(ngModel)]="editEmployee.designation" type="text" id="txtdesignation" class="form-control"  name="designation"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="txtdepartment" class="col-sm-4">Department</label>
+            
+            <div class="col-sm-8">
+            <input [(ngModel)]="editEmployee.department"  type="text" id="txtdepartment" class="form-control"  name="department"/>
+            </div>
+          </div>
+            <div class="form-group row">
+              <label for="txtpincode" class="col-sm-4">PinCode</label>
+            
+            <div class="col-sm-8">
+            <input [(ngModel)]="editEmployee.pinCode"  type="number" id="txtpincode" class="form-control"  name="pincode"/>
+            </div>
+          </div>
+          <div class="form-group row">
+              <label for="txtemail" class="col-sm-4">Email</label>
+            
+            <div class="col-sm-8">
+  
+  
+          <input [(ngModel)]="editEmployee.email"  type="text" id="txtemail" class="form-control"  name="email"/>
+            </div>
+            
+
+          
+                  </div>
+
+            <div class="form-group row">
+              <label for="txtImage" class="col-sm-4">Image</label>
+              <div class="col-sm-8">
+                  <input [(ngModel)]="editEmployee.image"  (change)="onChange($event)" type="file" id="txtImage" class="form-control" placeholder="Enter Image URL" name="image" />
+                  <img *ngIf="editEmployee.image" [src]="base64ToImg(editEmployee.image)" alt="Employee Image" />
+              </div>
+          </div>
+      
+  
+
+                  <div class="form-group row">
+                  <label for="selectCountry" class="col-sm-4">Country</label>
+                  <div class="col-sm-8">
+                    <select  id="selectCountry" class="form-control" (change)="onCountryChange($event)">
+                      <option value="" disabled selected>Select Country</option>
+                      <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                  <label for="selectState" class="col-sm-4">State</label>
+                  <div class="col-sm-8">
+                    <select  id="selectState" class="form-control" (change)="onStateChange($event)">
+                      <option value="" disabled selected>Select State</option>
+                      <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+                    </select>
+                  </div>
+                </div>
+              
+                <div class="form-group row">
+                  <label for="selectCity" class="col-sm-4">City</label>
+                  <div class="col-sm-8">
+                    <select id="selectCity" (change)="onCitySelected($event)"  class="form-control" [(ngModel)]="editEmployee.cityId"  class="form-control">
+                      <option value="" disabled selected>Select City</option>
+                      <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                    </select>
+                  </div>
+                </div>
+  
+    
+          
+                  
+      
+              
+              
+              
+              <div class="modal-footer">
+                <button (click)="updateClick()" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                                          </div>
+                              </div>
+                        </div>
+
+              
+              
+          
+          
+
+
+
+
+            <!-- edit -->
+
+
+              
+
+
+                      
+                      
+      
+        
+        

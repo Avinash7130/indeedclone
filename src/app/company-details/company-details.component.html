@@ -1,0 +1,61 @@
+<div class="container text-center">
+    <img src="./assets/Cs-soft/cs.jpg" height="200" alt="{{ company.name }} Cover Image" class="card-img-top cover-image">
+  </div>
+  <div class="container mt-4">
+    <div *ngIf="company">
+      <h2 class="text-bold">{{ company.name }}</h2>
+      <div class="average-rating">
+        <div class="row">
+          <div *ngFor="let star of getAverageStarRating(companyReviews)">
+            <mat-icon color="warn">{{ star }}</mat-icon>
+          </div>
+          <div class="card-body">
+            <a [routerLink]="['/writereview', company.id]" class="text-center">Write a Review</a>
+          </div>
+        </div>
+       
+      </div>
+  
+      
+      
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3>Company Details</h3>
+            </div>
+            <div class="card-body">
+      
+              <p><strong>Location:</strong> {{ company.location }}</p>
+              <p><strong>Industry:</strong> {{ company.industry }}</p>
+             
+              <!-- Add more details as needed -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3>Company Description</h3>
+            </div>
+            <div class="card-body">
+              <p>{{ company.description }}</p>
+            </div>
+          </div>
+          <div class="card mt-4">
+            <div class="card-header">
+              <h3>Contact Information</h3>
+            </div>
+            <div class="card-body">
+              <p><strong>Email:</strong> {{ company.email }}</p>
+           
+              <!-- Add more contact details as needed -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!company">
+      <p class="text-danger">Company details not available.</p>
+    </div>
+  </div>

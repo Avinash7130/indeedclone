@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h2 class="text-bold">Write a Review</h2>
+    <form (ngSubmit)="submitReview()" #reviewForm="ngForm">
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <div class="star-rating">
+          <mat-icon
+            *ngFor="let i of [1, 2, 3, 4, 5]"
+            (click)="setRating(i)"
+            [ngClass]="{ 'filled': i <= rating }"
+          >
+            star
+          </mat-icon>
+        </div>
+        <input type="hidden" id="rating" name="rating" [(ngModel)]="rating" required>
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" [(ngModel)]="comment" required class="form-control"></textarea>
+      </div>
+      <button type="submit" [disabled]="!reviewForm.form.valid" class="btn btn-primary">Submit Review</button>
+    </form>
+  </div>

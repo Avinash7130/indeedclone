@@ -1,0 +1,61 @@
+<br>
+<br>
+<h2 class="text-center">Find great places to work</h2><br>
+<h3 class="text-center"> Get access to millions of company reviews</h3>
+
+<div class="search-container">
+
+    <input
+      id="searchInput"
+      type="text"
+      [formControl]="searchControl"
+      (input)="onSearchInputChange()"
+      placeholder="Enter company name, job profile, or location"
+    />
+    <button class="btn btn-primary">Find Companies</button>
+</div>
+
+
+<div class="row m-2 p-2">
+    <div *ngFor="let company of companiesWithReviews" class="company-card"  >
+        <div *ngIf="company.showCompany">
+            <div class="company-info">
+              <a [routerLink]="['/company-Details', company.id]">
+                <h2>{{ company.name }}</h2>
+                <p>Job Profile: {{ company.jobProfile }}</p>
+                <p>Location: {{ company.location }}</p>
+              </a>
+              </div>
+          
+              <div class="reviews-section">
+                <p> Average Rating:</p>
+                <div class="row">
+                    <div *ngFor="let star of getStarRating(calculateAverageRating(company.reviews))">
+                        <mat-icon color="warn">{{ star }}</mat-icon>
+                      </div>
+        
+                </div>
+                
+               
+                
+                <p>Total Reviews: {{ company.reviews.length }}</p>
+                
+                <button (click)="toggleReviews(company)">
+                  {{ company.showReviews ? 'Hide Reviews' : 'Show Reviews' }}
+                </button>
+              </div>
+          
+              <div *ngIf="company.showReviews" class="review-section">
+                <h3>All Reviews:</h3>
+                <div *ngFor="let review of company.reviews" class="review-card">
+                  <div *ngFor="let star of getStarRating(review.rating)">
+                    <mat-icon color="warn">{{ star }}</mat-icon>
+                  </div>
+                  <p>Comment: {{ review.comment }}</p>
+                  <hr>
+                </div>
+              </div></div>
+
+     
+    </div>
+</div>

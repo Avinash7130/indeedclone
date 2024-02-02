@@ -1,0 +1,125 @@
+<div class="container rounded border">
+    <div class="employee-details">
+        <!-- Display employee details here -->
+      
+        <div class="add-employee-form">
+          <h2>Job Application</h2>
+      
+          <form (ngSubmit)="saveClick()" #employeeForm="ngForm">
+
+            <div class="form-group row">
+                <label for="txtCompanyName" class="col-sm-4">CompanyId</label>
+                <div class="col-sm-8">
+                  <input [(ngModel)]="newEmployee.companyId" 
+                  type="text" id="txtCompanyName" class="form-control" name="companyName" [disabled]="true"/>
+                  
+                </div>
+              </div>
+
+
+            <div class="form-group row">
+              <label for="txtname" class="col-sm-4">Name</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.name" type="text" id="txtname" class="form-control" placeholder="Enter Name" name="name"/>
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="txtaddress" class="col-sm-4">Address</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.address" type="text" id="txtaddress" class="form-control" placeholder="Enter Address" name="address"/>
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="txtsalary" class="col-sm-4">Salary</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.salary" type="number" id="txtsalary" class="form-control" placeholder="Enter Salary" name="salary"/>
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="txtdesignation" class="col-sm-4">Designation</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.designation" type="text" id="txtdesignation" class="form-control" placeholder="Enter Designation" name="designation"/>
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="txtdepartment" class="col-sm-4">Department</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.department" type="text" id="txtdepartment" class="form-control" placeholder="Enter Department" name="department"/>
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="txtpincode" class="col-sm-4">PinCode</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.pinCode" type="number" id="txtpincode" class="form-control" placeholder="Enter PinCode" name="pincode"/>
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="txtemail" class="col-sm-4">Email</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.email" type="text" id="txtemail" class="form-control" placeholder="Enter Email" name="email"/>
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="txtImage" class="col-sm-4">Image</label>
+              <div class="col-sm-8">
+                <input [(ngModel)]="newEmployee.image" (change)="onNewEmployeeImageChange($event)" type="file" id="txtImage" class="form-control" placeholder="Enter Image URL" name="image"/>
+                <img *ngIf="imagePreview" [src]="imagePreview" alt="Employee Image"/>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label for="txtresume" class="col-sm-4">Resume</label>
+                <div class="col-sm-8">
+                  <input [(ngModel)]="newEmployee.resume" (change)="onResumeSelected($event)" type="file" id="txtImage" class="form-control" placeholder="Enter Resume URL" name="resume"/>
+                  <!-- <img *ngIf="imagePreview" [src]="imagePreview" alt="Employee Image"/> -->
+                </div>
+              </div>
+           
+         
+      
+            <div class="form-group row">
+              <label for="selectCountry" class="col-sm-4">Country</label>
+              <div class="col-sm-8">
+                <select id="selectCountry" class="form-control" (change)="onCountryChange($event)">
+                  <option value="" disabled selected>Select Country</option>
+                  <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                </select>
+              </div>
+            </div>
+           
+      
+            <div class="form-group row">
+              <label for="selectState" class="col-sm-4">State</label>
+              <div class="col-sm-8">
+                <select id="selectState" class="form-control" (change)="onStateChange($event)">
+                  <option value="" disabled selected>Select State</option>
+                  <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+                </select>
+              </div>
+            </div>
+      
+            <div class="form-group row">
+              <label for="selectCity" class="col-sm-4">City</label>
+              <div class="col-sm-8">
+                <select id="selectCity" (change)="onCitySelected($event)" class="form-control" [(ngModel)]="newEmployee.cityId" name="selectedCity">
+                  <option value="" disabled selected>Select City</option>
+                  <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                </select>
+              </div>
+            </div>
+      
+            <div class="modal-footer">
+              <button (click)="saveClick()" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+</div>

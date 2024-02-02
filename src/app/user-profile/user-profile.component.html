@@ -1,0 +1,45 @@
+<!-- <h2 class="text-center m-2 p-2 profile-heading">User Profile</h2> -->
+
+<div class="center-card mb-3">
+  <div class="container">
+    <div *ngIf="userProfile">
+      <div class="row">
+        <div class="col-8">
+          <h2 class="profile-username">{{userProfile.name}}</h2>
+        </div>
+        <div class="col-4">
+          <div class="profile-initials-circle">
+            {{getInitials(userProfile.name)}}
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <p class="profile-email"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;{{userProfile.email}}</p>
+      <p class="profile-email"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{userProfile.phoneNumber}}</p>
+      <p class="profile-email"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{userProfile.address}}</p>
+
+    </div>
+  </div>
+</div>
+<h2 style="margin-left: 400px; font-size: 24px;">Resume</h2>
+  
+<div class="card center-card" style="max-height: 100px; margin-top: -10px;">
+   
+  <div *ngIf="resumeData">
+    <a  href="#" (click)="downloadResume()" download="resume.pdf" style="text-decoration: none; color: inherit;">
+      <div style="display: flex; align-items: center; cursor: pointer;">
+        <div class="row col-12">
+            <div class="col-6">
+                <img src="./assets/pdf-icon/pdf-icon.png" alt="PDF Icon" style="width: 50px; height: 50px; margin-right: 10px;">
+                <strong>Indeed Resume</strong>
+            </div>
+          
+       {{loadAppliedJobs()}}
+       {{appliedJobs}}
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

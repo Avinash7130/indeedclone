@@ -1,1 +1,794 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.indeed-logo {
+    max-width: 100px; /* Adjust the size as needed */
+    max-height: 70px; /* Adjust the height as needed, or remove this line if not needed */
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  .navbar {
+    border-bottom: 1px dotted red; /* Set the color and style of the border */
+  }
+  
+  /* Optional: Add some padding to the navbar */
+  .navbar-nav {
+    padding-bottom: 5px; /* Adjust the padding as needed */
+  }
+  .navbar-nav li {
+    margin-right: 20px; /* Adjust the margin as needed */
+  }
+  .middle-container {
+    position: relative;
+    width: 77%;
+    border-top: 1px solid rgba(0, 0, 0, .3);
+    margin: auto;
+    padding-top: 20px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.Left-container {
+    width: 41.5%;
+}
+
+.right-container {
+    position: sticky !important;
+    top: 30px !important;
+    border: 1px solid rgba(0, 0, 0, .3);
+    width: 52%;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.search-param {
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 15px;
+}
+
+.upload {
+    display: flex;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.star {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+}
+
+.upload h4:first-of-type {
+    font-size: 16px !important;
+    color: rgb(37, 87, 167);
+    margin-right: 4px;
+    font-weight: 500 !important;
+}
+
+.upload h4:first-of-type:hover {
+    text-decoration: underline;
+}
+
+.upload h4:last-of-type {
+    font-size: 16px !important;
+    margin-right: 4px;
+    font-weight: 500 !important;
+}
+
+.pages {
+    width: 100%;
+}
+
+.pages p {
+    font-weight: normal;
+    font-size: .75rem;
+    line-height: 1rem;
+    color: #6f6f6f;
+}
+
+.pages>div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: .8rem !important;
+}
+
+.sort span:first-of-type {
+    color: black;
+    font-weight: 600;
+}
+
+.sort span:last-of-type {
+    color: rgb(37, 87, 167);
+    font-weight: 600;
+}
+
+.jobs-container {
+    width: 100%;
+    height: auto;
+}
+
+img {
+    margin-top: 15px;
+}
+
+.card {
+    width: 100%;
+    height: 290px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 0 15px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 10px !important;
+    transition: 1s ease-in-out;
+}
+
+.shrinkk {
+    width: 100%;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 0 15px;
+    border: 1px solid rgba(0, 0, 0, .3) !important;
+    border-radius: 10px;
+    height: 80px !important;
+    transition: 1s ease-in-out;
+}
+
+.rem {
+    height: 0;
+    font-size: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.dis {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top>p {
+    color: rgb(198, 107, 131);
+    font-weight: 500;
+    font-size: .75rem;
+}
+
+.dots {
+    position: relative;
+    margin-top: 15px;
+    height: 25px;
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dots>span {
+    width: 4px;
+    height: 4px;
+    background-color: black;
+    border-radius: 50%;
+    border: 1px solid !important;
+    margin-bottom: 3px;
+    font-size: 35px;
+}
+
+h3 {
+    margin: 0 !important;
+    font-weight: 500 !important;
+}
+
+.card h3:hover {
+    text-decoration: underline;
+}
+
+.card h4 {
+    font-size: 1rem!important;
+    line-height: 1.38rem!important;
+    margin: 0;
+    margin-top: -10px;
+    display: flex;
+    color: #2d2d2d !important;
+    align-items: center !important;
+    font-weight: 500;
+}
+
+.rating {
+    color: black;
+    font-size: .8rem!important;
+    margin-bottom: 11px;
+    margin-top: 14px !important;
+    margin-left: 15px !important;
+}
+
+.card ul {
+    padding-left: 18px;
+    list-style: circle;
+    line-height: 1.25rem;
+    color: #6f6f6f;
+    font-size: .875rem;
+}
+
+.postDate {
+    color: #6f6f6f;
+    font-weight: 400;
+    font-size: .8rem;
+}
+
+.cross {
+    width: 30px !important;
+    cursor: pointer;
+}
+
+/*paginate*/
+
+.paginateBttns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    width: 90%;
+    padding: 0;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.paginateBttns a {
+    font-weight: 500;
+    border-radius: 8px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    margin-left: 12px;
+    font-size: 18px;
+    border-collapse: separate;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-stretch: 100%;
+    line-height: 23.4;
+    background: #ececec;
+    color: #2d2d2d;
+}
+
+.paginateDisabled {
+    display: none !important;
+}
+
+.paginateBttns a:hover {
+    background-color: #d0caca;
+    color: black;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.paginateActive a {
+    background-color: rgb(89, 89, 89) !important;
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+.previousBn, .nextBn {
+    font-weight: 900 !important;
+}
+
+.undo {
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 25px;
+    align-items: center !important;
+    justify-content: space-between;
+}
+
+.undo div:last-of-type {
+    color: hsl(212, 75%, 31%);
+}
+
+@media screen and (max-width: 1200px) {
+    .Left-container {
+        width: 100% !important;
+    }
+    .right-container {
+        display: none;
+    }
+    img {
+        display: none;
+    }
+    .middle-container {
+        width: 90%;
+        margin-top: 30px;
+    }
+}
+
+.grey {
+    color: black !important;
+    cursor: pointer;
+}
+
+.blue {
+    color: rgb(37, 87, 167) !important;
+    cursor: pointer;
+}
+.jobHeadings {
+  width: 100%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 0 15px;
+  padding-bottom: 25px;
+  box-shadow: 0 5px 5px gainsboro;
+}
+
+.titlee {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comp>p {
+  margin: 0;
+}
+
+.rating {
+  margin-bottom: 18px !important;
+  margin-right: 10px !important;
+}
+
+.app a {
+  color: white;
+}
+
+.app a:hover {
+  color: white;
+}
+
+.comp>h4 {
+  font-size: 15px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.jobHeadings>h4 {
+  font-size: 18px;
+  margin-bottom: -10px !important;
+  display: flex;
+  align-items: center;
+}
+
+.jobHeadings h3 {
+  margin-bottom: 0 !important;
+}
+
+.comp {
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+
+.apply {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.app {
+  width: 150px;
+  height: 41px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #2557a7;
+  border: 0.0625rem solid transparent !important;
+  color: #fff;
+  padding-bottom: 2px;
+}
+
+.app:hover {
+  background-color: rgb(0, 58, 155);
+}
+
+.detailed {
+  height: 400px;
+  overflow-y: scroll;
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.apply img {
+  margin-left: 16px;
+  margin-top: 0;
+  cursor: pointer;
+  height: 47px;
+  border-radius: 12px;
+}
+
+#expandd {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  width: 150px;
+  background-color: white !important;
+}
+
+.hideit {
+  display: none;
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card h2 {
+    color: #333;
+}
+
+.card p {
+    color: #666;
+}
+.hr-line {
+    border-top: 1px solid #ccc; /* Customize the line color and style */
+    margin-top: 10px; /* Add spacing above the line */
+    margin-bottom: 20px; /* Add spacing below the line */
+}
+.job-details-container {
+    max-height: 2000px; /* Adjust the max height as needed */
+    overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
+}
+.small-button {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+@import '~font-awesome/css/font-awesome.min.css';
+
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+    max-width: 600px;  /* Set your desired max width */
+   
+    margin: 20px auto;
+    
+   
+  
+    .search-input-container {
+      display: flex;
+      align-items: center;
+   
+      margin-right: 50px;
+     
+   
+     
+  
+      input {
+        width: 300px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+    }
+  
+    button {
+      width: 100px;
+      padding: 10px;
+      font-size: 8px;
+    }
+  }
+  .company-details {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+  
+    .form-group {
+      margin-bottom: 20px;
+  
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+      }
+  
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+  
+      textarea {
+        min-height: 100px;
+      }
+    }
+  
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+  
+      &:disabled {
+        background-color: #ddd;
+        cursor: not-allowed;
+      }
+    }
+  }
+  .avatar-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .user-avatar {
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;  /* Optional: Add rounded corners */
+    padding: 8px; /* Adjust as needed */
+  }
+  
+  .avatar-dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .user-info {
+    padding: 8px 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .divider {
+    border-top: 1px solid #ddd;
+  }
+  
+  .logout-option {
+    display: block;
+    padding: 8px 16px;
+    color: #3498db; /* Blue color */
+    text-decoration: none;
+  }
+  
+  .logout-option:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+  }
+  .gray-background {
+    display: inline-block;
+    background: rgb(207, 196, 196);
+  }
+  .larger-search {
+    width: 50%; /* or set a specific width in pixels */
+    height: 50px; /* Adjust the height as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+  }
+/* company-review.component.scss (or your global styles) */
+.company-card {
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.company-info {
+  margin-bottom: 16px;
+}
+
+.reviews-section {
+  margin-top: 16px;
+}
+
+.review-card {
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.divider {
+  margin-top: 20px;
+}
+.review-card {
+  display: flex;
+  align-items: center;
+}
+
+mat-icon {
+  font-size: 20px;
+  color: gold; /* Change the color as needed */
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  label {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+  }
+}
+.footer {
+  background-color: #f8f9fa;
+  padding: 30px 0;
+  color: #495057;
+}
+
+.footer h5 {
+  color: #343a40;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer a {
+  color: #495057;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #007bff;
+}
+.star-rating {
+  mat-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .filled {
+    color: gold; /* or any other color you prefer */
+  }
+}
+.suggestions-container {
+  position: absolute;
+  width: 100%;
+}
+
+.suggestions-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #fff; // Adjust as needed
+  border: 1px solid #ccc; // Adjust as needed
+}
+
+.suggestions-list li {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc; // Adjust as needed
+}
+
+.suggestions-list li:last-child {
+  border-bottom: none;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 0px; /* Adjust gap as needed */
+}
+
+
+
+.find-jobs-btn {
+  margin-left: 0px; 
+}
+.center-card {
+  margin: auto;
+  margin-top: 50px; 
+  max-width: 600px; 
+}
+.profile-heading {
+  font-size: 30px; 
+}
+
+.profile-username {
+  font-size: 40px; 
+}
+
+.profile-email {
+  font-size: 18px; 
+  margin-top: 8px; 
+}
+.profile-initials-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #007bff; 
+  color: #ffffff; 
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px; 
+}
+  
+  
+  
+ 
+  

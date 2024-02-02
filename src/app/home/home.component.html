@@ -1,0 +1,172 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-..." crossorigin="anonymous">
+
+<div class="row">
+  <div class="col-8">
+    <div class="search-container">
+      <div class="search-input-container flex-grow-1">
+     
+      <input type="text" [formControl]="searchTermControl" placeholder="Search for jobs..."
+    class="form-control larger-search flex-grow-1" [matAutocomplete]="auto">
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="search()">
+    <mat-option *ngFor="let company of filteredCompanyList" [value]="company.name">
+      <i class="fas fa-search"></i>&nbsp;{{ company.name }}
+    </mat-option>
+    <mat-option *ngFor="let company of filteredCompanyList" [value]="company.jobProfile">
+      <i class="fas fa-search"></i>&nbsp; {{ company.jobProfile }}
+    </mat-option>
+  </mat-autocomplete>
+
+  <input type="text" [(ngModel)]="location" placeholder="Location..." class="form-control larger-search">
+  <button class="btn btn-primary" (click)="search()">
+    <i class="fas fa-search"></i> Find jobs
+  </button>
+</div>
+     
+    </div>
+  </div>
+</div>
+  <hr class="hr-line">
+
+<div class="row">
+    <div class="col-4">
+        <div class="company-list-container">
+            <style>
+                .gray-background {
+                  display: inline-block; 
+                  background: rgb(207, 196, 196);
+                }
+                .description {
+          max-height: 60px; 
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+              </style>
+            <div  *ngFor="let company of filteredCompanyList.length > 0 ? 
+            filteredCompanyList : companyList" class="card" (click)="showMoreInfo(company)">
+             <h2>{{company.jobProfile}}</h2>
+             
+                <p>{{ company.name }}</p>
+              <p>{{ company.industry }}</p>
+              <p>
+                <span class="gray-background" [ngClass]="{'gray-background': company.salary}">{{ company.salary }}</span> &nbsp;
+                <span class="gray-background" [ngClass]="{'gray-background': company.schedule}">{{ company.schedule }}</span> &nbsp;
+            
+
+              </p>
+              <p>{{ company.location }}</p>
+              <p class="description">{{ company.description }}</p>
+          
+            </div>
+         
+          </div>
+
+    </div>
+
+
+
+
+    <div class="col-8">
+        <div class="conatainter">
+        <div class="additional-info-panel" *ngIf="selectedCompany" >
+            <div class="card"  style="width: 300%; height: 150px;">
+            <h2>{{selectedCompany.jobProfile}}</h2>
+            <p>{{ selectedCompany.name }} | {{selectedCompany.address}} | ${{selectedCompany.salary}}</p>
+            <button class="btn btn-primary small-button" (click)="applyNow()">Apply Now</button>
+            <br>
+            </div>
+            <div class="card" style="width: 300%; height: 500px;">
+            <h2>Job Details</h2>
+
+
+         
+            <div class="job-details-container">
+                <div class="job-details-section">
+                    <h3> <i class="fas fa-money-bill"></i>&nbsp;Pay:</h3>
+                    <ul>
+                        <li>{{selectedCompany.salary}}</li>
+                    </ul>
+                </div>
+
+                <div class="job-details-section">
+                    <h3> <i class="fas fa-clock"></i>&nbsp;Shift and schedule:</h3>
+                    <ul>
+                        <li>{{selectedCompany.schedule}}</li>
+                    </ul>
+                </div>
+                <hr class="hr-line">
+                <div class="job-details-section">
+                    <h3> <i class="fas fa-map-marker-alt"></i>&nbsp;location:</h3>
+                    <ul>
+                        <li>{{selectedCompany.location}}</li>
+                    </ul>
+                </div>
+                <hr class="hr-line">
+                <div class="job-details-section">
+                    <h3>Description:</h3>
+                    <ul>
+                        <li>{{selectedCompany.description}}</li>
+                    </ul>
+                </div>
+                <div class="job-details-section">
+                    <h3>Salary:</h3>
+                    <ul>
+                        <li>{{selectedCompany.salary}}</li>
+                    </ul>
+                </div>
+                <div class="job-details-section">
+                    <h3>Speak With The Employer:</h3>
+                    <ul>
+                        <li>{{selectedCompany.contactNo}}</li>
+                    </ul>
+                </div>
+            </div>
+            <button (click)="hideMoreInfo()">Hide Details</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<hr class="hr-line">
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h5>Indeed</h5>
+        <ul>
+          <li><a href="#">Career Advice</a></li>
+          <li><a href="#">Browse Jobs</a></li>
+          <li><a href="#">Browse Companies</a></li>
+          <li><a href="#">Salaries</a></li>
+          <li><a href="#">Indeed Events</a></li>
+          <li><a href="#">Work at Indeed</a></li>
+          <li><a href="#">Countries</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="#">Help Centre</a></li>
+          <li><a href="#">ESG at Indeed</a></li>
+          <li><a href="#">Guidelines for safe job search</a></li>
+          <li><a href="#">Post a job</a></li>
+          <li><a href="#">© 2024 Indeed</a></li>
+          <li><a href="#">Accessibility at Indeed</a></li>
+          <li><a href="#">Privacy Centre</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+     
+    
+
+
